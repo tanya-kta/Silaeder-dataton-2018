@@ -12,12 +12,18 @@ Says hello to user """
 	print("If you want to LET UP, type symbol - and we will finish the game")
 	print("Let's start a game!\n")
 
-def draw_plot():
+def draw_plot(city_lat, city_lon, city_name, title=''):
 	""" Draws a plot """
 	plt.figure(figsize=(16, 16))
+	plt.title(title)
 	m = Basemap(projection='lcc', resolution=None,
 				width=8E6, height=8E6, 
-				lat_0=30, lon_0=59)
+				lat_0=city_lat, lon_0=city_lon)
+	m.etopo(scale=0.5, alpha=0.5)
+	x, y = m(city_lon, city_lat)
+	plt.plot(x, y, 'ok', markersize=5)
+	plt.text(x, y, city_name, fontsize=12)
+	plt.show()
 
 def game():
 	""" Main function that supports
@@ -38,11 +44,14 @@ communication with player """
 			print("... Try again, please")
 			continue
 		info = get_city_info(city)
-		print("You've entered a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
+		draw_plot(info['coordinates'][1], info['coordinates'][0], city, 'Your city')
+		#print("You've entered a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
 		if reply['city'] is None:
 			break
 		info = get_city_info(reply['city'])
-		print("I chosed a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
+		print("I chose {}".format(reply['city']))
+		draw_plot(info['coordinates'][1], info['coordinates'][0], reply['city'], "Computer's city")
+		#print("I chosed a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
 		last_city = reply['city']
 
 def finish():
