@@ -1,6 +1,6 @@
 import json
 with open("data.json", "r") as f:
-	data = json.loads(f.read()) # city:(lan, log, population, used)
+	data = json.loads(f.read()) # city:(coords, population, used)
 
 user_stat = 0
 comp_stat = 0
@@ -40,17 +40,17 @@ def get_reply(prev_city, city):
 		return {"ok": False, "error": "not in data"}
 	elif (prev_city is not None) and (_to_low_format(prev_city[-1]) != _to_low_format(city[0])):
 		return {"ok": False, "error": "mistake"}
-	if get_city_information(city)["used"]:
+	elif get_city_information(city)["used"]:
 		return {"ok": False, "error": "is used"}
-	data[city][3] = True
+	data[city][2] = True
 	answer = " "
 	for i in data:
-		if (not data[i][3]) and (_to_low_format(i)[0] == _to_low_format(city)[-1]):
-			if answer == " " or data[answer][2] < data[i][2]:
+		if (not data[i][2]) and (_to_low_format(i)[0] == _to_low_format(city)[-1]):
+			if answer == " " or data[answer][1] < data[i][1]:
 				answer = i
 	if answer == " ":
 		return {"ok": True, "city": None}
-	data[answer][3] = True
+	data[answer][2] = True
 	return {"ok": True, "city": answer}
 	
 
