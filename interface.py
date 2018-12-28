@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 from backend import get_reply
 from backend import get_city_information as get_city_info
+from backend import get_statistic as get_stats
 
 
 def start():
@@ -45,7 +46,7 @@ communication with player """
 		last_city = reply['city']
 
 def finish():
-	pass
+	print("Game is finished. Results: {}".format(get_stats()))
 
 if __name__ == "__main__":
 	start()
