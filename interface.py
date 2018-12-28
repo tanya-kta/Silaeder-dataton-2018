@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
 #from backend import some_function as get_reply
 #from backend import some_function as get_city_info
 
@@ -8,6 +10,12 @@ Says hello to user """
 	print("Hello! That's the KaKoSi's application licensed by Muffinware License")
 	print("If you want to LET UP, type symbol - and we will finish the game")
 	print("Let's start a game!\n")
+
+def draw_plot():
+	plt.figure(figsize=(16, 16))
+	m = Basemap(projection='lcc', resolution=None,
+				width=8E6, height=8E6, 
+				lat_0=30, lon_0=59)
 
 def game():
 	""" Main function that supports
@@ -27,11 +35,16 @@ communication with player """
 			continue
 		info = get_city_info(city)
 		print("You've entered a city with coordinates {} with population {}".format(*info)) # Instead of this there'll be a plot drawing
+		if reply['city'] is None:
+			break
 		info = get_city_info(reply['city'])
-		print("I chosed a city with coordinates {} with population {}".format(*info))
+		print("I chosed a city with coordinates {} with population {}".format(*info)) # Instead of this there'll be a plot drawing
 		last_city = reply['city']
+
+def finish()
 
 if __name__ == "__main__":
 	start()
 	game()
+	finish()
 	exit(0)
