@@ -34,6 +34,7 @@ def get_city_information(city):
 		return None
 
 def get_reply(prev_city, city):
+	global user_stat, comp_stat
 	city = _to_city_format(city)
 	prev_city = _to_city_format(prev_city)
 	if prev_city is None:
