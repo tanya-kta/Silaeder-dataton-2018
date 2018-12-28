@@ -1,4 +1,4 @@
-data = {"Moscow":(1, 2, 100, 0)} # city:(lan, log, people, used)
+data = {"Moscow":(1, 2, 100, 0)} # city:(lan, log, population, used)
 
 user_stat = 0
 comp_stat = 0
@@ -15,11 +15,25 @@ def return_statistic():
 	else:
 		return {"player":user_stat, "computer":comp_stat, "winner":"computer"}
 
-def return_coordinates_city(city):
+def information_city(city):
 	if find_sity_in_data(city):
-		return {city:(data[city][0], data[city][1])}
+		return {"coordinates":(data[city][0], data[city][1]), "population": data[city][2], "used":data[city][3]}
 	return {city: None}
 
+def low(word):
+	if word is None:
+		return word
+	else
+		return word.lower()
+
+def get_reply(prev_city, city):
+	prev_city = low(prev_city)
+	city = low(city)
+	if !find_city_in_data(city):
+		return {"ok":False, "error":"not in data"}
+	if !(prev_city is None) and (prev_city[-1] != city[0]):
+		return {"ok":False, "error":"mistake"}
+	
 
 if __name__ == "__main__":
-	print(return_coordinates_city("Moscow"))			
+	print()
