@@ -10,8 +10,8 @@ def start():
 	""" First function to be executed,
 Says hello to user """
 	print("Hello! That's the KaKoSi's application licensed by Muffinware License")
-	print("If you want to LET UP, type symbol - and we will finish the game")
-	print("Let's start a game!\n")
+	print("If you want to LET UP, type symbol \"-\" and we will finish the game")
+	print("Let's start!\n")
 
 def draw_plot(city_lat, city_lon, city_name, title=''):
 	""" Draws a plot """
@@ -40,9 +40,9 @@ communication with player """
 				break
 			reply = get_reply(last_city, city)
 			if not reply['ok']:
-				if(reply['error'] == "is used"):
+				if(reply['error'] == 'is used'):
 					print("We've already used this city", end='')
-				elif(reply['error'] == "mistake"):
+				elif(reply['error'] == 'mistake'):
 					print("You have to enter a city that starts with letter {}".format(last_city[-1].upper()), end='')
 				else:
 					print("You've entered a city I don't know", end='')
@@ -59,7 +59,7 @@ communication with player """
 			#print("I chosed a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
 			last_city = reply['city']
 		except:
-			print('I GOT AN EXCEPTION! I LET UP!')
+			print("I GOT AN EXCEPTION! I LET UP!")
 			break
 
 def finish():
