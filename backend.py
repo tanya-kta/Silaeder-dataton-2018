@@ -3,7 +3,7 @@ data = {"Moscow": [1, 2, 100, False], "Omom": [1, 2, 100, False]} # city:(lan, l
 user_stat = 0
 comp_stat = 0
 def _find_city_in_data(city):
-	if(city in data):
+	if(city in data.keys()):
 		return True
 	return False
 
