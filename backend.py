@@ -42,6 +42,7 @@ def get_reply(prev_city, city):
 		return {"ok": False, "error": "mistake"}
 	elif get_city_information(city)["used"]:
 		return {"ok": False, "error": "is used"}
+	user_stat += data[city][1]
 	data[city][2] = True
 	answer = " "
 	for i in data:
@@ -50,6 +51,7 @@ def get_reply(prev_city, city):
 				answer = i
 	if answer == " ":
 		return {"ok": True, "city": None}
+	comp_stat += data[answer][1]
 	data[answer][2] = True
 	return {"ok": True, "city": answer}
 	
