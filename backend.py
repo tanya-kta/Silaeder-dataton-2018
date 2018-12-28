@@ -4,6 +4,7 @@ with open("data.json", "r") as f:
 
 user_stat = 0
 comp_stat = 0
+
 def _find_city_in_data(city):
 	if(city in data.keys()):
 		return True
@@ -27,7 +28,7 @@ def get_statistic():
 
 def get_city_information(city):
 	if _find_city_in_data(city):
-		return {"coordinates": (data[city][0], data[city][1]), "population": data[city][2], "used": data[city][3]}
+		return {"coordinates": data[city][0], "population": data[city][1], "used": data[city][2]}
 	return None
 
 def get_reply(prev_city, city):
