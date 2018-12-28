@@ -5,11 +5,6 @@ with open("data.json", "r") as f:
 user_stat = 0
 comp_stat = 0
 
-def _find_city_in_data(city):
-	if(city in data.keys()):
-		return True
-	return False
-
 def _to_low_format(word):
 	if word is None:
 		return word
@@ -22,14 +17,21 @@ def _to_city_format(word):
 	else:
 		return word[0].upper() + word[1:].lower()
 
+def _find_city_in_data(city):
+	if(_to_city_format(city) in data.keys()):
+		return True
+	return False
+
 def get_statistic():
 	return {"player": user_stat, "computer": comp_stat, "winner": "player" if user_stat >= comp_stat else "computer"}
 
 
 def get_city_information(city):
-	if _find_city_in_data(city):
+	city = _to_city_format(city)
+	try:
 		return {"coordinates": data[city][0], "population": data[city][1], "used": data[city][2]}
-	return None
+	except:
+		return None
 
 def get_reply(prev_city, city):
 	city = _to_city_format(city)
