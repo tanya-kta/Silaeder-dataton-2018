@@ -1,4 +1,6 @@
-data = {"Moscow": [1, 2, 100, False], "Omom": [1, 2, 100, False]} # city:(lan, log, population, used)
+import json
+with open("data.json", "r") as f:
+	data = json.loads(f.read()) # city:(lan, log, population, used)
 
 user_stat = 0
 comp_stat = 0
