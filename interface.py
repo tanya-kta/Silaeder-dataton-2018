@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
-#from backend import some_function as get_reply
-#from backend import some_function as get_city_info
+from backend import get_reply
+from backend import get_city_information as get_city_info
+from backend import get_statistic as get_stats
 
 
 def start():
@@ -12,6 +13,7 @@ Says hello to user """
 	print("Let's start a game!\n")
 
 def draw_plot():
+	""" Draws a plot """
 	plt.figure(figsize=(16, 16))
 	m = Basemap(projection='lcc', resolution=None,
 				width=8E6, height=8E6, 
@@ -23,6 +25,8 @@ communication with player """
 	last_city = None
 	while True:
 		city = input("Enter a city: ")
+		if(city == '-'):
+			break
 		reply = get_reply(last_city, city)
 		if not reply['ok']:
 			if(reply['error'] == "is used"):
@@ -34,14 +38,15 @@ communication with player """
 			print("... Try again, please")
 			continue
 		info = get_city_info(city)
-		print("You've entered a city with coordinates {} with population {}".format(*info)) # Instead of this there'll be a plot drawing
+		print("You've entered a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
 		if reply['city'] is None:
 			break
 		info = get_city_info(reply['city'])
-		print("I chosed a city with coordinates {} with population {}".format(*info)) # Instead of this there'll be a plot drawing
+		print("I chosed a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
 		last_city = reply['city']
 
-def finish()
+def finish():
+	print("Game is finished. Results: {}".format(get_stats()))
 
 if __name__ == "__main__":
 	start()
