@@ -17,9 +17,9 @@ communication with player """
 		city = input("Enter a city: ")
 		reply = get_reply(last_city, city)
 		if not reply['ok']:
-			if(reply['error'] == "used"):
+			if(reply['error'] == "is used"):
 				print("We've already used this city", end='')
-			elif(reply['error'] == "letter"):
+			elif(reply['error'] == "mistake"):
 				print("You have to enter a city that starts with letter {}".format(last_city[-1].upper()), end='')
 			else:
 				print("You've entered a city I don't know", end='')
