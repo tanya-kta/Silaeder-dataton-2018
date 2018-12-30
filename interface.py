@@ -13,7 +13,7 @@ Says hello to user """
 	print("If you want to LET UP, type symbol \"-\" and we will finish the game")
 	print("Let's start!\n")
 
-def draw_plot(city_lat, city_lon, city_name, title=''):
+def draw_plot(city_lon, city_lat, city_name, title=''):
 	""" Draws a plot """
 	plt.figure(figsize=(16, 16))
 	plt.title(title)
@@ -49,13 +49,13 @@ communication with player """
 				print("... Try again, please")
 				continue
 			info = get_city_info(city)
-			draw_plot(info['coordinates'][1], info['coordinates'][0], "{} ({})".format(city, info['population']), 'Your city')
+			draw_plot(*info['coordinates'], "{} ({})".format(city, info['population']), 'Your city')
 			#print("You've entered a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
 			if reply['city'] is None:
 				break
 			info = get_city_info(reply['city'])
 			print("I chose {}".format(reply['city']))
-			draw_plot(info['coordinates'][1], info['coordinates'][0], "{} ({})".format(reply['city'], info['population']), "Computer's city")
+			draw_plot(*info['coordinates'], "{} ({})".format(reply['city'], info['population']), "Computer's city")
 			#print("I chosed a city with coordinates {} with population {}".format(info['coordinates'], info['population'])) # Instead of this there'll be a plot drawing
 			last_city = reply['city']
 		except:

@@ -1,6 +1,6 @@
 import json
 with open("data.json", "r") as f:
-	data = json.loads(f.read()) # city:(coords, population, used)
+	data = json.loads(f.read()) # city:((longitude, lattitude), population, used)
 
 user_stat = 0
 comp_stat = 0
