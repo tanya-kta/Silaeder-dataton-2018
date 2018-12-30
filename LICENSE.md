@@ -6,6 +6,6 @@ this stuff is worth it, you can buy me a muffin in return.
 
 -Nikolay Nechaev, <Nikolay_Nechaev@mail.ru>
 
--Sivkov Savelii, <ya-savelii@mail.ru>
-
 -Kadykova Tatiana, <tanya-kta@bk.ru>
+
+-Sivkov Savelii, <ya-savelii@mail.ru>
